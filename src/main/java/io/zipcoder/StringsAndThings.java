@@ -1,6 +1,9 @@
 package io.zipcoder;
 
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 /**
  * @author tariq
  */
@@ -15,7 +18,22 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+      int count = 0;
+      char[] charInput = input.toCharArray();
+
+      if(input.endsWith("z") || input.endsWith("y")){
+          count++;
+      }
+
+      for(int i=0;i<charInput.length-1;i++){
+          if(charInput[i] == 'z' && charInput[i+1] == ' '){
+              count++;
+          }
+          if (charInput[i] == 'y' && charInput[i+1] == ' '){
+              count++;
+          }
+      }
+      return count;
     }
 
     /**
@@ -28,7 +46,8 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String ans = base.replaceAll(remove, "");
+        return ans;
     }
 
     /**
@@ -40,7 +59,37 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int isCount = 0;
+        int notCount = 0;
+        char[] charInput = input.toCharArray();
+
+        if(input.endsWith("is")){
+            isCount++;
+        }
+        if(input.endsWith("not")){
+            notCount++;
+        }
+
+        //check for is occurences
+        for(int i=0;i< charInput.length-2;i++){
+            if(charInput[i]=='i' && charInput[i+1]=='s'){
+                isCount++;
+            }
+        }
+
+        //check for not occurences
+        for(int i=0;i< charInput.length-3;i++){
+            if((charInput[i]=='n' && charInput[i+1]=='o') && charInput[i+2]=='t'){
+                notCount++;
+            }
+        }
+
+        if(isCount == notCount){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -51,7 +100,18 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        boolean gHappy = true;
+        char[] charInput = input.toCharArray();
+
+        for(int i=1;i<charInput.length-1;i++){
+            if(charInput[0] == 'g' && charInput[1]!='g'){
+                gHappy = false;
+            }
+            else if((charInput[i] == 'g' && charInput[i+1]!='g') && charInput[i-1] != 'g'){
+                gHappy = false;
+            }
+        }
+        return gHappy;
     }
 
 
@@ -63,6 +123,14 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int tripleCount = 0;
+        char[] charInput = input.toCharArray();
+
+        for(int i=0;i<charInput.length-2;i++){
+            if((charInput[i] == charInput[i+1]) && charInput[i] == charInput[i+2]){
+                tripleCount++;
+            }
+        }
+        return tripleCount;
     }
 }
